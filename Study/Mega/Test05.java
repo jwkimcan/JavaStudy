@@ -1,75 +1,92 @@
 package test;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Test05 {
-	String jjak(int a) {
-		if (a % 2 == 0) {
-			return "짝수";
-		} else {
-			return "홀수";
-		}
-	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		for (char i = 'A'; i <= 'Z'; i++) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		System.out.println("===========");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("세개의 수를 입력 하세요");
-		int num1 = sc.nextInt();
-		int num2 = sc.nextInt();
-		int num3 = sc.nextInt();
-		Test05 jjak = new Test05();
-		String result = jjak.jjak(num1);
+		System.out.println("숫자를 입력해주세요");
+		int num = sc.nextInt();
+		int sum = 0;
+		for (int i = 1; i <= num; i++) {
+			if (sum > 100) {
+				break;
+			}
+			sum += i;
+		}
+		System.out.println(sum);
+		System.out.println("===========");
+		System.out.println("숫자를 입력해주세요");
+		int startNum = sc.nextInt();
+		int cha = sc.nextInt();
+		int count = sc.nextInt();
+		int result = 0;
+		for (int i = startNum; i <= cha * count; i += cha) {
+			result = i;
+		}
 		System.out.println(result);
-		result = jjak.jjak(num2);
-		System.out.println(result);
-		result = jjak.jjak(num3);
-		System.out.println(result);
-		System.out.println("---------------");
-		System.out.println("BMI 수치를 입력해주세요");
-		double bmi = sc.nextDouble();
-		if (bmi > 20) {
-			System.out.println("비만중");
-		} else if (bmi > 10) {
-			System.out.println("과체중");
+		System.out.println("===========");
+		System.out.println("수를 입력 해주세요");
+		num = sc.nextInt();
+		count = 0;
+		for (int i = 1; i <= num; i++) {
+			if (num % i == 0) {
+				count++;
+			}
+
+		}
+		if (count == 2) {
+			System.out.println("소수");
 		} else {
-			System.out.println("정상");
+			System.out.println("소수아님");
 		}
-		System.out.println("---------------");
-		System.out.println("두 점수를 입력해 주세요");
-		num1 = sc.nextInt();
-		num2 = sc.nextInt();
-		double avg = (num1 + num2) / 2.;
-		if (avg >= 70) {
-			System.out.println("합격");
+		System.out.println(count);
+		System.out.println("=============");
+		Random rand = new Random();
+
+		int youWin = 0;
+		int computerWin = 0;
+		for (int i = 0; i < 5; i++) {
+			int computerPlay = rand.nextInt(3) + 1;
+			System.out.print("가위(1) 바위(2) 보(3)!! : ");
+			 num = sc.nextInt();
+			if (youWin == 3 || computerWin == 3) {
+				break;
+			} else if (num == computerPlay) {
+				System.out.println("computer :" + computerPlay);
+				System.out.println("비겼으니 다시");
+			} else if (num == 1 && computerPlay == 2) {
+				System.out.println("computer :" + computerPlay);
+				System.out.println("이겼습니다");
+				youWin++;
+			} else if (num == 2 && computerPlay == 3) {
+				System.out.println("computer :" + computerPlay);
+				System.out.println("이겼습니다~");
+				youWin++;
+			} else if (num == 3 && computerPlay == 1) {
+				System.out.println("computer :" + computerPlay);
+				System.out.println("이겼습니다~");
+				youWin++;
+			} else {
+				System.out.println("computer :" + computerPlay);
+				System.out.println("졌습니다");
+				computerWin++;
+			}
+		}
+
+		if (youWin > computerWin) {
+			System.out.printf("최종결과 %d:%d로 당신이 이겼습니다~", youWin, computerWin);
 		} else {
-			System.out.println("불합격");
-		}
-		System.out.println("--------------");
-		System.out.println("세 수를 입력 하세요 ");
-		num1 = sc.nextInt();
-		num2 = sc.nextInt();
-		num3 = sc.nextInt();
-		int max = num1;
-		if (num2 > max) {
-			max = num2;
-		}
-		if (num3 > max) {
-			max = num3;
-		}
-		System.out.println(max);
-		System.out.println("-----------------");
-		System.out.println("계절을 입력해 주세요");
-		int month = sc.nextInt();
-		switch (month) {
-		case 3, 4, 5 -> System.out.println("봄");
-
-		case 6, 7, 8 -> System.out.println("여름");
-
-		case 9, 10, 11 -> System.out.println("가을");
-
-		case 12, 1, 2 -> System.out.println("겨울");
-
+			System.out.printf("최종결과 %d:%d로 당신이 졌습니다~", youWin, computerWin);
 		}
 	}
+
 }
