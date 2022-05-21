@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="stlye.css" type="text/css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <label>비밀번호</label><input type="text" id="pw1" />
+    <label>비밀번호 확인</label><input type="text" id="pw2" />
+    <button type="button" id="confirmBtn">확인</button>
+    <hr />
+    <input type="text" id="word" />
+    <button type="button" id="banBtn">검색</button>
+    <hr />
+    <button type="button" id="plus">펼치기</button>
+    <div id="textDiv" style="display: none">추가 설명입니다. 블라블라</div>
+    <hr />
+    <div class="box"></div>
+    <button type="button" id="boxBtn">교체</button>
+    <hr />
+    <button type="button" id="previous">이전</button>
+    <img src="2.jpeg" alt="" id="images" />
+    <button type="button" id="next">다음</button>
+
+    <script>
+      $(document).ready(function () {
+        let num = 1;
+        let imageName = ["1.jpeg", "2.jpeg", "3.jpeg"];
+        var myImage = document.getElementById("images");
+        $("#next").on("click", function () {
+          myImage.setAttribute("src", imageName[num]);
+          num++;
+          if (num >= imageName.length) {
+            num = 0;
+          }
+        });
+        $("#previous").on("click", function () {
+          myImage.setAttribute("src", imageName[num]);
+          num--;
+          if (num < 0) {
+            num = imageName.length;
+          }
+        });
+        $("#boxBtn").on("click", function () {
+          $(".box").toggleClass("change-box2");
+        });
+
+        $("#plus").on("click", function () {
+          if ($("#textDiv").css("display") == "none") {
+            $("#textDiv").show();
+            $("#plus").html("닫기");
+          } else {
+            $("#textDiv").hide();
+            $("#plus").html("펼치기");
+          }
+        });
+
+        $("#banBtn").on("click", function () {
+          var bannedWords = [
+            "십장생",
+            "시베리아",
+            "조카신발",
+            "쌍쌍바",
+            "십원짜리",
+          ];
+          let word = $("#word").val().split(" ");
+          for (let i = 0; i < word.length; i++) {
+            for (let j = 0; j < bannedWords.length; j++) {
+              if (word[i] === bannedWords[j]) {
+                alert("금지어가 포함되어있습니다. 검색 불가");
+                console.log("금지어가 포함되어있습니다. 검색 불가");
+                return;
+              } else {
+              }
+            }
+          }
+        });
+
+        $("#confirmBtn").on("click", function () {
+          let text1 = $("#pw1").val();
+          let text2 = $("#pw2").val();
+          if (text1 == text2) {
+            alert("확인완료");
+            console.log("확인완료");
+          } else {
+            alert("비밀번호가 일치하지 않습니다.");
+            console.log("비밀번호가 일치하지 않습니다.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
